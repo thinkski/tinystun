@@ -106,7 +106,11 @@ int main(int argc, char **argv)
 
     // resolve host to address
     struct addrinfo *ai;
-    if (err = getaddrinfo(host, NULL, NULL, &ai), err) {
+    struct addrinfo hint = {
+        .ai_family = PF_INET,
+        .ai_flags = AI_DEFAULT
+    };
+    if (err = getaddrinfo(host, NULL, &hint, &ai), err) {
         fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(err));
         exit(1);
     }
