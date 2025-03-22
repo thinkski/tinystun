@@ -1,24 +1,5 @@
 // tinystun: A simple STUN client
-
-// Copyright (c) 2023 Chris Hiszpanski
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// Copyright 2024 Chris Hiszpanski. All rights reserved.
 
 // C standard library
 #include <errno.h>
@@ -46,7 +27,7 @@ struct stun_message_header {
 
 void help() {
     printf(
-        "usage: tinystun <host[:port]>\n"
+        "usage: tinystun [-6] <host[:port]>\n"
     );
     exit(0);
 }
@@ -54,7 +35,7 @@ void help() {
 void version() {
     printf(
         "tinystun 1.0\n"
-        "Copyright (c) 2023 Chris Hiszpanski. All rights reserved.\n"
+        "Copyright 2024 Chris Hiszpanski. All rights reserved.\n"
     );
     exit(0);
 }
@@ -108,7 +89,7 @@ int main(int argc, char **argv)
     struct addrinfo *ai;
     struct addrinfo hint = {
         .ai_family = PF_INET,
-        .ai_flags = AI_DEFAULT
+        .ai_flags = AI_ADDRCONFIG | AI_V4MAPPED
     };
     if (err = getaddrinfo(host, NULL, &hint, &ai), err) {
         fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(err));
