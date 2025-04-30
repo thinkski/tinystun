@@ -1,5 +1,5 @@
 // tinystun: A simple STUN client
-// Copyright 2024 Chris Hiszpanski. All rights reserved.
+// Copyright 2024-2025 Chris Hiszpanski. All rights reserved.
 
 // C standard library
 #include <errno.h>
@@ -27,7 +27,7 @@ struct stun_message_header {
 
 void help() {
     printf(
-        "usage: tinystun [-6] <host[:port]>\n"
+        "usage: tinystun <host[:port]>\n"
     );
     exit(0);
 }
@@ -35,7 +35,7 @@ void help() {
 void version() {
     printf(
         "tinystun 1.0\n"
-        "Copyright 2024 Chris Hiszpanski. All rights reserved.\n"
+        "Copyright 2024-2025 Chris Hiszpanski. All rights reserved.\n"
     );
     exit(0);
 }
